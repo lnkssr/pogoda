@@ -30,7 +30,7 @@ async fn fetch_weather_data(url: &str) -> Result<WeatherResponse, Box<dyn Error>
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    let url = "https://api.open-meteo.com/v1/forecast?latitude=55&longitude=38&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m";
+    let url = "https://api.open-meteo.com/v1/forecast?latitude=55.78314&longitude=38.44416&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m";
 
     match fetch_weather_data(url).await {
         Ok(weather_response) => {
