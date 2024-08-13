@@ -5,6 +5,7 @@ use std::error::Error;
 #[derive(Deserialize, Debug)]
 struct IpApiResponse {
     city: Option<String>,
+    #[serde(rename = "regionName")]
     region_name: Option<String>,
     country: Option<String>,
     lat: Option<f64>,
