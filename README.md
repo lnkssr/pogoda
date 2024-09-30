@@ -1,87 +1,86 @@
+# Weather and Geolocation Fetcher
 
-# Weather and IP Information Fetcher
+Простой проект на Rust, который получает информацию о текущей погоде и геолокации на основе введенного города. Использует API `nominatim.openstreetmap.org` для геокодирования и `open-meteo.com` для получения данных о погоде.
 
-This project is a simple Rust application that retrieves the current weather information and IP-based geolocation data. It uses the `ip-api.com` API to determine the user's location and the `open-meteo.com` API to fetch weather data based on that location.
+## Функции
 
-## Features
+- Определение местоположения по названию города.
+- Получение данных о погоде, включая:
+  - Текущую температуру.
+  - Скорость ветра.
+  - Вероятность осадков.
 
-- Fetches geolocation information (city, region, country) based on the user's public IP.
-- Fetches weather data for the user's location, including:
-  - Current temperature
-  - Wind speed
-  - Precipitation probability
-  - Hourly data such as temperature, humidity, wind speed, and precipitation probability.
+## Зависимости
 
-## Dependencies
+- [tokio](https://crates.io/crates/tokio): для асинхронных операций.
+- [reqwest](https://crates.io/crates/reqwest): HTTP-клиент для выполнения запросов.
+- [serde](https://crates.io/crates/serde): для сериализации и десериализации JSON.
+- [colored](https://crates.io/crates/colored): для цветного вывода температуры.
 
-- [tokio](https://crates.io/crates/tokio): For asynchronous operations.
-- [reqwest](https://crates.io/crates/reqwest): HTTP client for making requests.
-- [serde](https://crates.io/crates/serde): For serializing and deserializing JSON data.
-- [serde_json](https://crates.io/crates/serde_json): For parsing JSON responses.
+## Установка
 
-## Installation
+1. Убедитесь, что на вашем компьютере установлен [Rust](https://www.rust-lang.org/).
 
-1. Ensure you have [Rust](https://www.rust-lang.org/) installed on your system.
-
-2. Clone the repository:
+2. Клонируйте репозиторий:
 
    ```bash
-   git clone repos.name
+   git clone https://github.com/lnkssr/pogoda.git
    ```
 
-3. Change into the project directory:
+3. Перейдите в директорию проекта:
 
    ```bash
-   cd weather-ip-fetcher
+   cd pogoda
    ```
 
-4. Build the project:
+4. Скомпилируйте проект:
 
    ```bash
    cargo build --release
    ```
+5. Перемещение в бинарную директорию (опционально):
 
-## Usage
+   ```bash 
+   mv /tartget/release/pogoda /usr/local/bin/pogoda
+   ```
+## Использование
 
-Simply run the compiled program:
+Запустите скомпилированную программу:
 
 ```bash
 cargo run --release
 ```
+Или
+```bash
+$ pogoda
+```
+Введите название города, и программа определит его местоположение и выведет текущие погодные данные.
 
-The application will automatically retrieve the IP information and fetch weather data for the geolocation based on your public IP.
-
-### Example Output:
+### Пример вывода:
 
 ```
-Location: New York (New York, United States)
-Current temperature: 24.5°C
-Wind speed: 3.20 m/s
-Precipitation probability: 0.00%
-
-Last hourly data:
-Temperature: 22.7°C
-Humidity: 70.00%
-Wind speed: 2.70 m/s
-Precipitation probability: 10.00%
+Введите город: Москва
+Местоположение: Москва, Россия
+Текущая температура: 12.34°C
+Скорость ветра: 5.60 м/с
+Вероятность осадков: 30.00%
 ```
 
-## How It Works
+## Как это работает
 
-1. The program sends a request to `ip-api.com` to retrieve geolocation information (city, region, country) based on the user's IP address.
-2. Once the location is retrieved (latitude and longitude), the program constructs a request URL for the `open-meteo.com` API.
-3. The weather data is fetched, and the current and hourly weather information is printed to the console.
+1. Программа отправляет запрос к API `nominatim.openstreetmap.org` для определения широты и долготы введенного города.
+2. Получив координаты, программа отправляет запрос к API `open-meteo.com`, чтобы получить текущую погоду по этим координатам.
+3. В результате выводятся текущие погодные данные: температура, скорость ветра и вероятность осадков.
 
-## API Endpoints
+## API Эндпоинты
 
-- **IP Info**: [ip-api.com](http://ip-api.com/json)
-- **Weather**: [open-meteo.com](https://open-meteo.com/en)
+- **Геолокация**: [nominatim.openstreetmap.org](https://nominatim.openstreetmap.org/)
+- **Погода**: [open-meteo.com](https://open-meteo.com/)
 
-## License
+## Лицензия
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+Этот проект распространяется под лицензией MIT. Подробнее см. файл [LICENSE](LICENSE).
 
-## Contribution
+## Вклад
 
-Feel free to fork this repository and submit pull requests. Contributions are welcome!
-
+Вы можете форкнуть этот репозиторий и отправить pull request. Вклады приветствуются!
