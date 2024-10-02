@@ -71,12 +71,14 @@ fn print_location(geocode_response: &GeocodeResponse) {
 fn print_weather_data(weather_response: &WeatherResponse) {
     if let Some(current) = &weather_response.current {
         let current_temp = current.temperature_2m.unwrap_or(0.0);
-        let temp_color = if current_temp > 0.0 {
-            format!("{:.2}°C", current_temp).green()
-        } else if current_temp > 17.0 {
-            format!("{:.2}°C", current_temp).yellow()
-        } else {
+        let temp_color = if current_temp <= 0.0 {
             format!("{:.2}°C", current_temp).blue()
+        } else if current_temp > 0.0 && current_temp < 17.0 {
+            format!("{:.2}°C", current_temp).yellow()
+        } else if current_temp >= 17.0 && current_temp < 24.0 {
+            format!("{:.2}°C", current_temp).green()
+        } else {
+            format!("{:.2}°C", current_temp).red()
         };
 
         let current_wind = current.wind_speed_10m.unwrap_or(0.0);
