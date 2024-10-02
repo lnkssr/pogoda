@@ -89,9 +89,9 @@ fn print_weather_data(weather_response: &WeatherResponse) {
         let current_prep = current.precipitation_probability.unwrap_or(0.0);
         let prep_color = if current_prep > 30.0 {
             format!("{:.2}%", current_prep).yellow()
-        } else if current_prep > 60.0{
+        } else if current_prep > 60.0 {
             format!("{:.2}%", current_prep).green()
-        } else{
+        } else {
             format!("{:.2}%", current_prep).red()
         };
 
