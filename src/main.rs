@@ -90,9 +90,9 @@ fn print_weather_data(weather_response: &WeatherResponse) {
         let prep_color = if current_prep > 30.0 {
             format!("{:.2}%", current_prep).yellow()
         } else if current_prep > 60.0 {
-            format!("{:.2}%", current_prep).green()
-        } else {
             format!("{:.2}%", current_prep).red()
+        } else {
+            format!("{:.2}%", current_prep).green()
         };
 
         println!("Текущая температура: {}", temp_color);
