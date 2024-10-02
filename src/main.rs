@@ -79,18 +79,22 @@ fn print_weather_data(weather_response: &WeatherResponse) {
 
         let current_wind = current.wind_speed_10m.unwrap_or(0.0);
         let wind_color = if current_wind > 5.0 {
-            format!("{:.2} M/C", current_wind).red()
+            format!("{:.2}M/C", current_wind).yellow()
+        } else if current_wind > 15.0 {
+            format!("{:.2}M/C", current_wind).red()
         } else {
-            format!("{:.2} M/C", current_wind).green()
+            format!("{:.2}M/C", current_wind).green()
         };
 
         let current_prep = current.precipitation_probability.unwrap_or(0.0);
-        let prep_color = if current_prep > 50.0 {
+        let prep_color = if current_prep > 30.0 {
             format!("{:.2}%", current_prep).yellow()
-        } else {
+        } else if current_prep > 60.0{
+            format!("{:.2}%", current_prep).green()
+        } else{
             format!("{:.2}%", current_prep).green()
         };
-        
+
         println!("Текущая температура: {}", temp_color);
         println!("Скорость ветра: {}", wind_color);
         println!("Вероятность осадков: {}", prep_color);
