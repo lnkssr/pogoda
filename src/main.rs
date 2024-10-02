@@ -73,6 +73,8 @@ fn print_weather_data(weather_response: &WeatherResponse) {
         let current_temp = current.temperature_2m.unwrap_or(0.0);
         let temp_color = if current_temp > 0.0 {
             format!("{:.2}°C", current_temp).green()
+        } else if current_temp > 17.0 {
+            format!("{:.2}°C", current_temp).yellow()
         } else {
             format!("{:.2}°C", current_temp).blue()
         };
