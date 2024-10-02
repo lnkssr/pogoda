@@ -92,7 +92,7 @@ fn print_weather_data(weather_response: &WeatherResponse) {
         } else if current_prep > 60.0{
             format!("{:.2}%", current_prep).green()
         } else{
-            format!("{:.2}%", current_prep).green()
+            format!("{:.2}%", current_prep).red()
         };
 
         println!("Текущая температура: {}", temp_color);
