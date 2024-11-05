@@ -83,11 +83,11 @@ fn print_weather_data(weather_response: &WeatherResponse) {
 
         let current_wind = current.wind_speed_10m.unwrap_or(0.0);
         let wind_color = if current_wind > 5.0 {
-            format!("{:.2}M/C", current_wind).yellow()
+            format!("{:.2}m/s", current_wind).yellow()
         } else if current_wind > 15.0 {
-            format!("{:.2}M/C", current_wind).red()
+            format!("{:.2}m/s", current_wind).red()
         } else {
-            format!("{:.2}M/C", current_wind).green()
+            format!("{:.2}m/s", current_wind).green()
         };
 
         let current_prep = current.precipitation_probability.unwrap_or(0.0);
